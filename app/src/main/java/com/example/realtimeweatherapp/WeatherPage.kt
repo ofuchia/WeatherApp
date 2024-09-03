@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun WeatherPage(){
+fun WeatherPage(viewModel: WeatherViewModel){
     var city by remember {
         mutableStateOf("")
     }
@@ -44,12 +44,15 @@ fun WeatherPage(){
                     city = it
                 },
                 label = {
-                    Text(text= "Search for any location")
+                    Text(text = "Search for any location")
                 }
             )
-            IconButton(onClick = {/*to do*/}) {
+            IconButton(onClick = {
+                viewModel.getData(city)
+            }) {
                 Icon(imageVector = Icons.Default.Search,
-                    contentDescription = "Search for any location")
+                    contentDescription = "Search for any location"
+                )
             }
         }
     }
